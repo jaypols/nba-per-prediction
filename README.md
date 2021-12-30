@@ -3,20 +3,20 @@
 </p>
 
 <p align="center">
-  <a href="#basic-overview">Basic Overview</a> •
-  <a href="#app-screenshots">App Screenshots</a> •
-  <a href="#data-processing-execution-instructions">Data Processing Execution</a> •
-  <a href="#visualizing-results">Visualizing Results</a>
+  <a href="#-basic-overview">Basic Overview</a> •
+  <a href="#-app-screenshots">App Screenshots</a> •
+  <a href="#-data-processing-execution-instructions">Data Processing Execution</a> •
+  <a href="#-visualizing-results">Visualizing Results</a>
 
 </p>  
 
-## [![](:pushpin:)](#pushpin) Basic Overview 
+## 📌 Basic Overview 
 
 Using historical basketball data, train a supervised learning algorithm with any combination of features including age, height, and weight to predict a player's Player Efficiency Rating (PER) for the next three years. The model chosen is a random forest regressor which makes use of bagging decision trees and splitting each branch on a feature. Finally, an average prectided PER will be calculated for current NBA players.
 <p align="center"><img width=80% src="nba-per-prediction/src/assets/images/random_forest.png"></p>
 
 
-## ![](:camera:) App Screenshots
+## 📷 App Screenshots
 
 <p align="center">
 <img width=100% src="nba-per-prediction/src/assets/images/app_screenshot.png">
@@ -25,7 +25,7 @@ Using historical basketball data, train a supervised learning algorithm with any
 <img width=100% src="nba-per-prediction/src/assets/images/app_screenshot2.png">
 </p>   
 
-## [![](:clipboard:)](#clipboard)Data Processing Execution Instructions
+## 📋 Data Processing Execution Instructions
 
 <p>The order of execution of the program files is as follows:</p>
 <p><b>1) Schema.sql</b> <i>(Database setup)</i></p>
@@ -39,7 +39,7 @@ Using historical basketball data, train a supervised learning algorithm with any
 
 
 
-## [![](:microscope:)](#microscope)Visualizing Results
+## 🔍 Visualizing Results
 
 ```shell
 # Step 1: Run Node app
