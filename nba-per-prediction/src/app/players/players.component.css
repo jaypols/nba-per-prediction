@@ -1,0 +1,55 @@
+div.mat-sort-header-container {
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+}
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.example-container {
+  position: relative;
+  min-height: 200px;
+}
+
+.mat-spinner-color::ng-deep circle {
+  stroke: #f95959 !important;
+}
+
+.card {
+  min-width: 80%;
+}
+
+.container {
+  min-width: 80%;
+  margin-top: 5%;
+}
+
+.dropdown1 {
+  float: right;
+}
+
+.detail {
+  color: #455d7a;
+  border-color: #455d7a;
+  max-width: 65px;
+  max-height: 30px;
+  font-size: 12px;
+  margin: 0 auto;
+}
+
+.images {
+  vertical-align: top;
+  display: inline-block;
+  max-width: 140px;
+  padding-right: 0px;
+}
+.images p {
+  display: block;
+  font-weight: bold;
+}
+.detail:hover {
+  background-color: #f95959;
+}

@@ -1,0 +1,185 @@
+<div class="container">
+  <mat-card style="background-color: #455d7a;" class="card">
+    <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+      <h3 style="color: white;">Predicting 786 Player's PER</h3>
+    </mat-card-title>
+
+    <mat-card-content style="background-color: #e3e3e3;">
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+          <mat-form-field>
+            <input
+              matInput
+              (keyup)="applyFilter($event.target.value)"
+              placeholder="Find Player"
+            />
+          </mat-form-field>
+          <div class="dropdown1">
+            <mat-form-field>
+              <mat-label>Filter Position</mat-label>
+              <mat-select>
+                <mat-option
+                  *ngFor="let position of positions"
+                  [value]="position"
+                  (click)="filterPos(position)"
+                >
+                  {{ position }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="loading-shade" *ngIf="isLoadingResults">
+            <mat-spinner
+              class="mat-spinner-color"
+              *ngIf="isLoadingResults"
+            ></mat-spinner>
+          </div>
+        </div>
+
+        <mat-table
+          [dataSource]="dataSource"
+          matSort
+          matSortDirection="asc"
+          matSortActive="playerName"
+        >
+          <!-- (matSortChange)="sortData($event)" -->
+          <ng-container matColumnDef="playerName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Player
+            </mat-header-cell>
+            <mat-cell class="images" *matCellDef="let row">
+              <img
+                style="width: 40px; bottom: 10px;"
+                [src]="'assets/player_photos/' + row.url"
+              />
+              <p>{{ row.playerName }}</p>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="age">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Age
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.age }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="position">
+            <mat-header-cell *matHeaderCellDef>
+              Position
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row.position }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="height">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Height
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row.height }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="weight">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Weight
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row.weight }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="accuracy">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Accuracy
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <span *ngIf="row.accuracy">{{ row.accuracy.toFixed(1) }}</span>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="PER">
+            <mat-header-cell *matHeaderCellDef>
+              PER
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="details">
+            <mat-header-cell *matHeaderCellDef>
+              Details
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <a target="_blank" [routerLink]="['/player', row.playerName]">
+                <button class="detail btn btn-outline-primary">Details</button>
+              </a>
+
+              <!-- <button mat-raised-button color="accent">Details</button> -->
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="blank">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let row"> </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="_2020">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              2020
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row._2020 }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="_2021">
+            <mat-header-cell
+              style="color: #f95959;"
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              2021
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row._2021.toFixed(1) }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="_2022">
+            <mat-header-cell
+              style="color: #f95959;"
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              2022
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row._2022.toFixed(1) }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="_2023">
+            <mat-header-cell
+              style="color: #f95959;"
+              *matHeaderCellDef
+              mat-sort-header
+            >
+              2023
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row._2023.toFixed(1) }}
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-header-row
+            *matHeaderRowDef="displayedColumns2; sticky: true"
+          ></mat-header-row>
+          <mat-row *matRowDef="let row; columns: cols"> </mat-row>
+        </mat-table>
+        <mat-paginator
+          [length]="resultsLength"
+          [pageSizeOptions]="[25, 50, 100, 200, 300]"
+        ></mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

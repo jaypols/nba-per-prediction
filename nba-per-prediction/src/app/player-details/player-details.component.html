@@ -1,0 +1,181 @@
+<div *ngIf="isLoadingResults == false">
+  <div class="header">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="current col-">
+          <span class="name">{{ currentPlayer }}</span>
+
+          <div class="physical">
+            {{ physical[currentPlayer].height }} –
+            {{ physical[currentPlayer].weight }}
+          </div>
+          <div class="playerImgBack centerContent">
+            <img
+              class="img-fluid currentImg"
+              src="assets/player_photos/{{ urls[currentPlayer] }}"
+            />
+          </div>
+          <div class="table-responsive">
+            <div class="averages">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th>Period</th>
+                    <th
+                      scope="col"
+                      *ngFor="
+                        let period of averages[currentPlayer]['Career']
+                          | keyvalue
+                      "
+                    >
+                      {{ period.key }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let period of averages[currentPlayer] | keyvalue">
+                    {{
+                      period.key
+                    }}
+                    <td *ngFor="let avg of period.value | keyvalue">
+                      {{ avg.value | json }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="simPlayer != ''" class="col-sm">
+          <div class="container">
+            <div class="similar">
+              <div class="left">
+                <!-- <div class="col-5 no-gutters"> -->
+                <span class="simName">{{ simPlayer }}</span>
+                <div class="physicalSim">
+                  {{ physical[simPlayer].height }} –
+                  {{ physical[simPlayer].weight }}
+                </div>
+
+                <div>
+                  <img
+                    class="img-fluid currentImg"
+                    src="assets/player_photos/{{ urls[simPlayer] }}"
+                  />
+                </div>
+                <div class="infoSim">
+                  Similarity Score - {{ similarity[simPlayer] }}%
+                </div>
+              </div>
+
+              <div class="right">
+                <div class="tb table-responsive">
+                  <div class="averages">
+                    <table class="table table-sm">
+                      <thead>
+                        <tr>
+                          <th>Period</th>
+                          <th
+                            scope="col"
+                            *ngFor="
+                              let period of averages[simPlayer]['Career']
+                                | keyvalue
+                            "
+                          >
+                            {{ period.key }}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="let period of averages[simPlayer] | keyvalue"
+                        >
+                          {{
+                            period.key
+                          }}
+                          <td *ngFor="let avg of period.value | keyvalue">
+                            {{ avg.value | json }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="similar">
+              <div class="left">
+                <!-- <div class="col-5 no-gutters"> -->
+                <span class="simName">{{ simPlayer2 }}</span>
+                <div class="physicalSim">
+                  {{ physical[simPlayer2].height }} –
+                  {{ physical[simPlayer2].weight }}
+                </div>
+
+                <div>
+                  <img
+                    class="img-fluid currentImg"
+                    src="assets/player_photos/{{ urls[simPlayer2] }}"
+                  />
+                </div>
+                <div class="infoSim">
+                  Similarity Score - {{ similarity[simPlayer2] }}%
+                </div>
+              </div>
+
+              <div class="right">
+                <div class="tb table-responsive">
+                  <div class="averages">
+                    <table class="table table-sm">
+                      <thead>
+                        <tr>
+                          <th>Period</th>
+                          <th
+                            scope="col"
+                            *ngFor="
+                              let period of averages[simPlayer2]['Career']
+                                | keyvalue
+                            "
+                          >
+                            {{ period.key }}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="let period of averages[simPlayer2] | keyvalue"
+                        >
+                          {{
+                            period.key
+                          }}
+                          <td *ngFor="let avg of period.value | keyvalue">
+                            {{ avg.value | json }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <div class="accuracy">Accuracy:</div>
+    <button mat-fab class="matfab">{{ accuracy }}%</button>
+  </div>
+
+  <app-player-chart
+    [players]="players"
+    [currentPlayer]="currentPlayer"
+    [playerStats]="playerStats"
+  ></app-player-chart>
+</div>
+<div class="loading-shade" *ngIf="isLoadingResults">
+  <mat-spinner class="mat-spinner-color" *ngIf="isLoadingResults"></mat-spinner>
+</div>

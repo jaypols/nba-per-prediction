@@ -1,0 +1,111 @@
+<div class="header">
+  <ngb-carousel>
+    <ng-template ngbSlide>
+      {{ setSlide() }}
+      <div class="picsum-img-wrapper">
+        <img
+          class="slide img-fluid"
+          src="assets/images/nba_kobe.jpg"
+          alt="Random first slide"
+        />
+      </div>
+      <div class="carousel-caption">
+        <h3>Predicting NBA Players PER</h3>
+
+        <p>
+          PER (Player Efficiency Rating) represents a player's per-minute
+          productivity.
+        </p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img
+          class="slide img-fluid"
+          src="assets/images/machine_learning.jpg"
+          alt="Random second slide"
+        />
+      </div>
+      <div class="carousel-caption">
+        <h3>Machine Learning</h3>
+        <p>
+          Utilizes a Random Forest algorithm consisting of many decision trees.
+        </p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <!--src="assets/images/new3.jpg" -->
+        <img
+          class="slide img-fluid"
+          src="assets/images/nba_art.jpg"
+          alt="Random third slide"
+        />
+      </div>
+      <div class="carousel-caption">
+        <h3 style="color: black;">Similarity Scores</h3>
+        <p style="color: black;">
+          Current Players and Similar Players PER is displayed.
+          <span></span>
+        </p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+  <div class="container" *ngIf="activeSlide == 0">
+    <div class="info mat-elevation-z4">
+      John Hollinger developed a forumala to find an all-in-one stat for a
+      player, PER.
+    </div>
+    <div class="info mat-elevation-z4">
+      PER is important in determining how well a player performs by weighing:
+      <div class="list mat-elevation-z4">
+        <ul>
+          <li>positive stats</li>
+          <li>negative stats</li>
+          <li>pace of game</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info mat-elevation-z4">
+      It is not a once and for all evaluation, but it is the best way to
+      summarize a player's accomplishments.
+    </div>
+  </div>
+  <div class="container" *ngIf="activeSlide == 1">
+    <div class="row">
+      <div class="column col-lg-6">
+        <div class="info mat-elevation-z4">
+          The Random Forest produced an accuracy of 84.5%.
+        </div>
+        <div class="info mat-elevation-z4">
+          786 players with 3584 data rows were included in the training set.
+        </div>
+      </div>
+      <div class="column col-lg-6">
+        <p>
+          <img
+            class="trees img-fluid"
+            src="assets/images/random_forest.png"
+            alt="Random second slide"
+          />
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container" *ngIf="activeSlide == 2">
+    <div class="info mat-elevation-z4">
+      Similarity Scores are a percentage based on similar quality, shape,
+      position, and win shares in comparison to the current player.
+    </div>
+    <div class="info mat-elevation-z4">
+      This provides a visual representation of the predicted PER and the similar
+      player's PER.
+    </div>
+    <div class="info mat-elevation-z4">
+      All stats used from basketball-reference.com
+    </div>
+  </div>
+</div>
+
+<app-players></app-players>
