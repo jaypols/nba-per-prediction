@@ -1,5 +1,10 @@
+
 <p align="center">
 <img width=40% src="nba-per-prediction/src/assets/images/logo.gif">
+</p>
+
+<p align="center">
+  <b>NBA PER Prediction</b>
 </p>
 
 <p align="center">
